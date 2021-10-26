@@ -6,6 +6,7 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+
 //middleware
 app.use(cors())
 app.use(express.json());
@@ -52,6 +53,10 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const result = await servicesCollection.deleteOne(query);
             res.json(result);
+        })
+        //heroku checkup update
+        app.get('/hello', (req, res) => {
+            res.send('hello updated here')
         })
     } finally {
         // await client.close();
